@@ -186,7 +186,7 @@ export default function Home() {
               </div>
               
               <div className="absolute -right-4 top-12 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg p-3 text-xs font-mono text-left transform rotate-2 hover:rotate-0 transition-transform duration-300 hover:scale-105">
-                <div className="text-green-400">// Auto-generated tests</div>
+                <div className="text-green-400">{'// Auto-generated tests'}</div>
                 <div className="text-yellow-400">assert_eq!(result, expected)</div>
               </div>
               

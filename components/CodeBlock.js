@@ -41,12 +41,6 @@ export default function CodeBlock({ code }) {
 
       setFileTree(tree);
 
-      
-      if (Object.keys(files).length > 0 && !activeFile) {
-        setActiveFile(Object.keys(files)[0]);
-      }
-
-      
       const folders = {};
       Object.keys(files).forEach((filePath) => {
         const parts = filePath.split("/");
@@ -61,7 +55,7 @@ export default function CodeBlock({ code }) {
       setExpandedFolders(folders);
     } catch (e) {
       
-      const files = { "programs/counter/src/lib.rs": code };
+      const files= { "programs/counter/src/lib.rs": code };
       setParsedFiles(files);
       setFileTree({
         programs: {
@@ -71,6 +65,12 @@ export default function CodeBlock({ code }) {
       setActiveFile("programs/counter/src/lib.rs");
     }
   }, [code]);
+
+  useEffect(() => {
+  if (Object.keys(parsedFiles).length > 0 && !activeFile) {
+    setActiveFile(Object.keys(parsedFiles)[0]);
+  }
+}, [parsedFiles, activeFile]);
 
   const getLanguage = (fileName) => {
     if (fileName.endsWith(".rs")) return "rust";
