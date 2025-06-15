@@ -151,7 +151,7 @@ export default function Chat() {
                   Welcome to Solana Sage
                 </h2>
                 <p className="text-center max-w-md text-gray-300">
-                  Describe the Solana smart contract you want to build, and I'll
+                  Describe the Solana smart contract you want to build, and I&apos;ll
                   generate the code and explain how it works.
                 </p>
               </div>

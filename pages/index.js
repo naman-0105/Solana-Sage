@@ -162,7 +162,7 @@ export default function Home() {
                     <div className="space-y-1 text-xs">
                       <div><span className="text-purple-400">#[program]</span></div>
                       <div><span className="text-blue-400">pub mod</span> <span className="text-yellow-400">token_swap</span> <span className="text-white"></span></div>
-                      <div className="ml-4"><span className="text-green-400">// Liquidity pool implementation</span></div>
+                      <div className="ml-4"><span className="text-green-400">{'// Liquidity pool implementation'}</span></div>
                       <div className="ml-4"><span className="text-blue-400">pub fn</span> <span className="text-yellow-400">swap</span><span className="text-white">(ctx: Context&lt;Swap&gt;) -&gt; Result&lt;()&gt; </span></div>
                       <div className="ml-8 text-gray-400">...</div>
                     </div>
@@ -251,7 +251,7 @@ export default function Home() {
                     <span className="text-sm text-gray-400">Natural Language Input</span>
                   </div>
                   <p className="text-gray-300 italic">
-                    "Create a token minting program that allows only the owner to mint tokens with a maximum supply of 1 million"
+                    &quot;Create a token minting program that allows only the owner to mint tokens with a maximum supply of 1 million&quot;
                   </p>
                 </div>
 
@@ -268,7 +268,7 @@ export default function Home() {
                     <div className="text-purple-400">#[program]</div>
                     <div className="text-blue-400">pub mod token_mint </div>
                     <div className="ml-4 text-gray-300">use super::*;</div>
-                    <div className="ml-4 text-green-400">// Generated with security best practices</div>
+                    <div className="ml-4 text-green-400">{'// Generated with security best practices'}</div>
                     <div className="text-gray-500">...</div>
                   </div>
                 </div>
@@ -279,7 +279,7 @@ export default function Home() {
                   Production-ready code in seconds
                 </h3>
                 <p className="text-gray-400 mb-8 leading-relaxed">
-                  Our AI understands Solana's architecture, security patterns, and best practices. 
+                  Our AI understands Solana&apos;s architecture, security patterns, and best practices. 
                   Get fully documented, tested, and deployment-ready smart contracts that follow industry standards.
                 </p>
                 <Button 
