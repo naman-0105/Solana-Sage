@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Code, Zap, Shield, Sparkles, Github, ExternalLink, Linkedin } from 'lucide-react';
@@ -7,6 +7,7 @@ export default function Home() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [terminalText, setTerminalText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -20,13 +21,16 @@ export default function Home() {
       } else {
         clearInterval(timer);
       }
-    }, 100);
+    }, 50);
 
     return () => clearInterval(timer);
   }, []);
 
   const handleNewChat = async () => {
+    if (isLoading) return;
+    
     try {
+      setIsLoading(true);
       const response = await fetch('/api/newchat', {
         method: 'POST',
       });
@@ -34,8 +38,10 @@ export default function Home() {
       router.push(`/chat?chatId=${data.chatId}`);
     } catch (error) {
       console.error('Error creating new chat:', error);
+    } finally {
+      setIsLoading(false);
     }
-  };
+  }, [router, isLoading]);
 
   const features = [
     {
@@ -125,11 +131,12 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <Button 
                 onClick={handleNewChat}
+                disabled={isLoading}
                 size="lg" 
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg group relative overflow-hidden shadow-lg hover:shadow-purple-500/20 hover:shadow-2xl transition-all duration-300"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg group relative overflow-hidden shadow-lg hover:shadow-purple-500/20 hover:shadow-2xl transition-all duration-300 disabled:opacity-50"
               >
                 <span className="relative z-10 flex items-center">
-                  Start Building
+                  {isLoading ? 'Start Building...' : 'Start Building'}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -284,7 +291,8 @@ export default function Home() {
                 </p>
                 <Button 
                   onClick={handleNewChat}
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                  disabled={isLoading}
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:opacity-50"
                 >
                   Try it now
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -309,8 +317,9 @@ export default function Home() {
                 </p>
                 <Button 
                   onClick={handleNewChat}
+                  disabled={isLoading}
                   size="lg" 
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-12 py-4 text-lg"
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-12 py-4 text-lg disabled:opacity-50"
                 >
                   Get Started Free
                   <ArrowRight className="w-5 h-5 ml-2" />
