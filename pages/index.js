@@ -41,7 +41,7 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  }, [router, isLoading]);
+  });
 
   const features = [
     {
