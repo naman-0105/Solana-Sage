@@ -26,7 +26,7 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  const handleNewChat = async () => {
+  const handleNewChat = useCallback(async () => {
     if (isLoading) return;
     
     try {
@@ -41,7 +41,7 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  });
+  }, [router, isLoading]);
 
   const features = [
     {
